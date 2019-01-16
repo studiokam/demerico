@@ -283,8 +283,11 @@ class ranking_model extends CI_Model{
 				if (!isset($wyniki[$value['wynik_user_id']])) {
 					$wyniki[$value['wynik_user_id']] = [];
 				}
+				if ($value['wynik_gospodarz_wynik'] != null && $value['wynik_gosc_wynik'] != null) {
+					$wyniki[$value['wynik_user_id']][] .= $value['wynik_mecz_id'];
+				}
 
-			    $wyniki[$value['wynik_user_id']][] .= $value['wynik_mecz_id'];
+			    
 			}
 
 			if (count($wyniki) > 1) {
