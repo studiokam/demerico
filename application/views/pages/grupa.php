@@ -10,7 +10,7 @@
 		          	<input type="checkbox" class="success" name="inni" class="custom-control-input" value="<?php echo ($watch_users_default > 0 ? 0 : 1) ?>" <?php if($watch_users_default > 0) echo "checked ='checked'";?> id="customControlAutosizing" onchange="window.location.href='<?php echo base_url(); ?>grupa/<?php echo $id; ?>?inni=' + this.value;">
 		          	<span class="slider round"></span>
 		        </label>
-		        <label class ="cdustom-control-label" for="cuvstomControlAutosizing">Pokaż jak obstawiają inni <?php if($watch_users_default > 0) echo '- <a href="konto">ustawienia</a>';?></label>
+		        <label class ="cdustom-control-label" for="cuvstomControlAutosizing">Pokaż jak obstawiają inni <?php if($watch_users_default > 0) echo '- <a href="' . base_url() . 'konto">ustawienia</a>';?></label>
 			</form>
 			<?php endif ?>
 			

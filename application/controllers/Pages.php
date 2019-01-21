@@ -69,6 +69,17 @@ class Pages extends CI_Controller {
 		
 	}
 
+	public function moje()
+	{
+		$data['title'] 							=	 'Moje typy';
+		$data['grupy'] 							=	 $this->terminarz_model->get_grupy();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/moje', $data);
+		$this->load->view('templates/footer');
+		
+	}
+
 
 	public function grupa($id_grupy)
 	{

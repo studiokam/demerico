@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><?= $title ?></title>
-  <meta name="description" content="A free and modern UI toolkit for web makers based on the popular Bootstrap 4 framework.">
+  <meta name="description" content="Typer dla kilku znajomych :)">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
   <!-- <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css"> -->
@@ -32,6 +32,7 @@
             <li><a href="<?php echo base_url(); ?>ranking">Ranking</a></li>
             
             <?php if ($this->session->userdata('logged_in')): ?>
+            <li><a href="<?php echo base_url(); ?>moje">Moje typy</a></li>
             <li><a href="<?php echo base_url(); ?>konto">Konto</a></li>
             <?php endif ?>
             <?php if (!$this->session->userdata('logged_in')): ?>

@@ -57,6 +57,7 @@ $route['konto'] = 'pages/konto';
 $route['ranking'] = 'pages/ranking';
 $route['ranking_lig/(:any)'] = 'pages/ranking_lig/$1';
 $route['users_list'] = 'pages/users_list';
+$route['moje'] = 'pages/moje';
 $route['grupa/(:any)'] = 'pages/grupa/$1';
 $route['typy/(:any)/(:any)'] = 'pages/typy/$1/$1';
 
