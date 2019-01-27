@@ -97,8 +97,7 @@ class Pages extends CI_Controller {
 			$users_id = $this->user_model->obserwowaniID($this->session->userdata('user_id'));
 			$data['aktywne_mecze_wyniki_obserwowanych'] = $this->terminarz_model->get_wyniki_obserwowanych($data['mecze_z_grupy'], $users_id);
 		}
-		// echo "<pre>";
-		// print_r($data['mecze_z_grupy']);
+		
 
 		// ustawienie pokazywania innych
 		if (isset($_GET['inni'])) {
@@ -125,7 +124,9 @@ class Pages extends CI_Controller {
 		} else {
 			$data['typy_usera'] 	= 	$this->terminarz_model->typy_usera($id_grupy,$data['podsumowanie'][0]['user_id']);
 		}
-
+// echo "<pre>";
+		// print_r($data['typy_usera']);
+		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/grupa', $data);
 		$this->load->view('templates/footer');

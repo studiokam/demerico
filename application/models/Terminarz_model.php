@@ -262,7 +262,9 @@ class terminarz_model extends CI_Model
 			mecz.gosc,
 			mecz.gospodarz_wynik,
 			mecz.gosc_wynik,
-			wynik.wynik_pkt
+			wynik.wynik_pkt,
+			wynik.wynik_gospodarz_wynik,
+			wynik.wynik_gosc_wynik
 			');
 		$this->db->where('group_id', $id_grupy);
 		$this->db->join('users', 'users.id = '.$user_id);

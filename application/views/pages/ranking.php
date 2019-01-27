@@ -14,10 +14,23 @@
 			  </thead>
 			  <tbody>
     
-  			<?php $i = 1; ?>
+  			<?php 
+  				$i = 1;
+  				$pts_temp = '';
+  			?>
 			<?php foreach ($all_points as $row): ?>
+				
 				<tr>
-			      <th scope="row"><?php echo $i; $i++; ?></th>
+			      <th scope="row">
+			      	<?php 
+			      	if ($pts_temp != $row['sum_points']) {
+			      		echo $i;
+			      	}
+			      		$pts_temp = $row['sum_points'];
+			      		$i++; 
+			      	?>
+			      		
+			      	</th>
 			      <td><?php echo $row['username']; ?></td>
 			      <td class="text-right"><?php echo $row['sum_points']; ?></td>
 			    </tr>
@@ -43,7 +56,16 @@
 			  	<?php $i = 1; ?>
 				<?php foreach ($last_group as $row): ?>
 				<tr>
-			      <th scope="row"><?php echo $i; $i++; ?></th>
+			      <th scope="row">
+			      	<?php 
+			      	if ($pts_temp != $row['sum_points']) {
+			      		echo $i;
+			      	}
+			      		$pts_temp = $row['sum_points'];
+			      		$i++; 
+			      	?>
+			      		
+			      	</th>
 			      <td><?php echo $row['username']; ?></td>
 			      <td class="text-right"><?php echo $row['sum_points']; ?></td>
 			    </tr>
@@ -69,7 +91,16 @@
   			<?php $i = 1; ?>
 			<?php foreach ($typowali_wszyscy as $row): ?>
 				<tr>
-			      <th scope="row"><?php echo $i; $i++; ?></th>
+			      <th scope="row">
+			      	<?php 
+			      	if ($pts_temp != $row['pts']) {
+			      		echo $i;
+			      	}
+			      		$pts_temp = $row['pts'];
+			      		$i++; 
+			      	?>
+			      		
+			      	</th>
 			      <td><?php echo $row['username']; ?></td>
 			      <td class="text-right"><?php echo $row['pts']; ?></td>
 			    </tr>
@@ -102,7 +133,16 @@
   			<?php $i = 1; ?>
 			<?php foreach ($wybrani_points as $row): ?>
 				<tr>
-			      <th scope="row"><?php echo $i; $i++; ?></th>
+			      <th scope="row">
+			      	<?php 
+			      	if ($pts_temp != $row['sum_points']) {
+			      		echo $i;
+			      	}
+			      		$pts_temp = $row['sum_points'];
+			      		$i++; 
+			      	?>
+			      		
+			      	</th>
 			      <td><?php echo $row['username']; ?></td>
 			      <td class="text-right"><?php echo $row['sum_points']; ?></td>
 			    </tr>

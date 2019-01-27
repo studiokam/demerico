@@ -207,10 +207,22 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  	<?php $i = 1; ?>
+			  	<?php 
+	  				$i = 1;
+	  				$pts_temp = '';
+	  			?>
 			  	<?php foreach ($podsumowanie as $rank): ?>
 			  		<tr>
-				      <th class="text-center"><?php echo $i; $i++;?></th>
+				      <th scope="row">
+				      	<?php 
+				      	if ($pts_temp != $rank['points']) {
+				      		echo $i;
+				      	}
+				      		$pts_temp = $rank['points'];
+				      		$i++; 
+				      	?>
+				      		
+				      </th>
 				      <td><?php echo $rank['username']; ?></td>
 				      <td class="text-center"><?php echo $rank['points']; ?></td>
 				      <td class="text-right"><a class="badge badge-info" href="<?php echo base_url(); ?>typy/<?php echo $id.'/'.$rank['user_id']; ?>">typy</a></td>
@@ -231,6 +243,7 @@
 			 <thead>
 			    <tr>
 			      <th scope="col">Mecz</th>
+			      <th class="text-center" scope="col">typ</th>
 			      <th class="text-center" scope="col">wynik</th>
 			      <th class="text-right" scope="col">Pkt.</th>
 			    </tr>
@@ -241,12 +254,14 @@
 			  		
 			    <tr>
 			      <td><?php echo $typy['gospodarz'] .' - '. $typy['gosc']; ?></td>
-			      <td class="text-center"><?php echo $typy['gospodarz_wynik'] .' : '. $typy['gosc_wynik']; ?></td>
+			      <td class="text-center"><?php echo $typy['wynik_gospodarz_wynik'] . ' : ' .$typy['wynik_gosc_wynik']; ?></td>
+			      <td class="text-center"><?php echo $typy['gospodarz_wynik'] .' : '. $typy['gosc_wynik'] ; ?></td>
 			      <td class="text-right"><?php echo $typy['wynik_pkt']; ?></td>
 			    </tr>
 			    <?php $lacznie_usera = $lacznie_usera + $typy['wynik_pkt']; ?>
 			    <?php endforeach ?>
 			   	<tr>
+			      <td></td>
 			      <td></td>
 			      <td class="text-center"></td>
 			      <td class="text-right"><?php echo $lacznie_usera; ?></td>
