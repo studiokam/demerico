@@ -273,19 +273,23 @@ class ranking_model extends CI_Model{
 		// pobranie typowanego meczu dla kazdego usera
 		$query = $this->db->get('wynik');
 		$result = $query->result_array();
-		$ile = 0;
+		$ile = 10;
+		
 
 		if (!empty($result)) {
 			
 			// do tablicy mecze dla danego usera
 			foreach ($result as $key => $value) {
+				if ($value['wynik_pkt'] != null) {
+					if (!isset($wyniki[$value['wynik_user_id']])) {
+						$wyniki[$value['wynik_user_id']] = [];
+					}
+					if ($value['wynik_gospodarz_wynik'] != null && $value['wynik_gosc_wynik'] != null) {
+						$wyniki[$value['wynik_user_id']][] .= $value['wynik_mecz_id'];
+					}
+				}
 
-				if (!isset($wyniki[$value['wynik_user_id']])) {
-					$wyniki[$value['wynik_user_id']] = [];
-				}
-				if ($value['wynik_gospodarz_wynik'] != null && $value['wynik_gosc_wynik'] != null) {
-					$wyniki[$value['wynik_user_id']][] .= $value['wynik_mecz_id'];
-				}
+					
 
 			    
 			}
@@ -298,56 +302,74 @@ class ranking_model extends CI_Model{
 					}
 				}
 
-				// zapisanie id userów zakwalifikowanych
-				foreach ($zakwalifikowany as $key => $value) {
-					$zakwalifikowany_id[] = $key; 
-				}
-
-				// wybranie meczów które typował każdy zakwalifikowany (min $ile)
-				$intersected_array = call_user_func_array('array_intersect',$zakwalifikowany);
-
-				// pobranie dla każdego usera punktów do meczu z tych zakwalifikowanych
-				foreach ($zakwalifikowany_id as $row) {
-					foreach ($intersected_array as $match) {
-						
-						$this->db->select('wynik_user_id, wynik_pkt');
-						$this->db->where('wynik_user_id', $row);
-						$this->db->where('wynik_mecz_id', $match);
-						$query = $this->db->get('wynik');
-						$result = $query->row_array();
-						$user_i_pkt_arr[] = $result;
-					}
-				}
-
-				// zliczanie punktów dla userow
-				foreach ($user_i_pkt_arr as $key => $value) {
-
-					if (!isset($user_i_pkt[$value['wynik_user_id']])) {
-						$user_i_pkt[$value['wynik_user_id']] = 0;
+				if (isset($zakwalifikowany)) {
+					
+					// zapisanie id userów zakwalifikowanych
+					foreach ($zakwalifikowany as $key => $value) {
+						$zakwalifikowany_id[] = $key; 
 					}
 
-				    $user_i_pkt[$value['wynik_user_id']] += $value['wynik_pkt'];
+					// wybranie meczów które typował każdy zakwalifikowany (min $ile)
+					$intersected_array = call_user_func_array('array_intersect',$zakwalifikowany);
+
+					if (!empty($intersected_array)) {
+
+						// pobranie dla każdego usera punktów do meczu z tych zakwalifikowanych
+						foreach ($zakwalifikowany_id as $row) {
+							foreach ($intersected_array as $match) {
+								
+								$this->db->select('wynik_user_id, wynik_pkt');
+								$this->db->where('wynik_user_id', $row);
+								$this->db->where('wynik_mecz_id', $match);
+								$query = $this->db->get('wynik');
+								$result = $query->row_array();
+								$user_i_pkt_arr[] = $result;
+							}
+						}
+
+						// echo "<pre>";
+						// print_r($zakwalifikowany_id);
+						// print_r($wyniki);
+
+						// zliczanie punktów dla userow
+						foreach ($user_i_pkt_arr as $key => $value) {
+
+							if (!isset($user_i_pkt[$value['wynik_user_id']])) {
+								$user_i_pkt[$value['wynik_user_id']] = 0;
+							}
+
+						    $user_i_pkt[$value['wynik_user_id']] += $value['wynik_pkt'];
+						}
+
+
+						// z
+						foreach ($user_i_pkt as $key => $value) {
+							$final[] = [
+								'username' => $this->user_model->getUsername($key),
+								'pts' => $value
+							]; 
+						}
+
+						// sortowanie od najwiekszej 
+						foreach ($final as $key => $row) 
+							{ 
+								$vc_array_name[$key] = $row['pts']; 
+							} 
+						array_multisort($vc_array_name, SORT_DESC, $final);
+
+
+						return $final;
+
+					} else {
+						return array();
+					}
+
+				} else {
+					return array();
 				}
 
-				// z
-				foreach ($user_i_pkt as $key => $value) {
-					$final[] = [
-						'username' => $this->user_model->getUsername($key),
-						'pts' => $value
-					]; 
-				}
-
-				// sortowanie od najwiekszej 
-				foreach ($final as $key => $row) 
-					{ 
-						$vc_array_name[$key] = $row['pts']; 
-					} 
-				array_multisort($vc_array_name, SORT_DESC, $final);
-
-
-				return $final;
+					
 			}
-
 				
 
 		}
