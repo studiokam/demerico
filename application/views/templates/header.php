@@ -7,18 +7,14 @@
   <title><?= $title ?></title>
   <meta name="description" content="Typer dla kilku znajomych :)">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
-  <!-- <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css"> -->
-  <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/shards.css"> -->
   <link href="https://fonts.googleapis.com/css?family=Rajdhani:400,600,700|Signika:400,700|Ubuntu:400,400i,500i,700" rel="stylesheet"> 
+
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bs.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/mp.css">
 
-
-
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/chung-timepicker.js" type="text/javascript" charset="utf-8"></script>
+  <script src="<?php echo base_url(); ?>assets/js/chung-timepicker.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 
