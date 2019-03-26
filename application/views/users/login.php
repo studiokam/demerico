@@ -6,11 +6,11 @@
             <?php echo form_open('users/login'); ?>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nick</label>
-                    <input type="text" class="form-control" name="username" placeholder="Nick" value="adam">
+                    <input type="text" class="form-control" name="username" placeholder="Nick">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Hasło</label>
-                    <input type="password" class="form-control" name="password" value="adam" placeholder="Hasło">
+                    <input type="password" class="form-control" name="password" placeholder="Hasło">
                 </div>
                 <button type="submit" class="btn btn-block btn-info">| Zaloguj</button>
             </form>
